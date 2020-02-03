@@ -38,6 +38,9 @@ def get_type_from_path(path):
     This is just the last bit of text following the last ".", by definition.
 
     """
+    if '.' not in os.path.basename(os.path.normpath(path)) and os.path.isdir(path):
+        return "directory"
+
     return path.split('.')[-1]
 
 

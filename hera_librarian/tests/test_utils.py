@@ -18,10 +18,14 @@ from hera_librarian import utils
 from . import ALL_FILES, obsids, filetypes, md5sums, pathsizes
 
 
-def test_get_type_from_path():
+def test_get_type_from_path(tmpdir):
     """Test type checking from path"""
     path = "/some/long/file.name.txt"
     assert utils.get_type_from_path(path) == "txt"
+
+    # test directory type
+    test_dir = tmpdir.mkdir("test")
+    assert utils.get_type_from_path(test_dir) == "directory"
 
     return
 
